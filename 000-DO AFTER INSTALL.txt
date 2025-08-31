@@ -1,0 +1,85 @@
+Backup the original .bashrc and .config/fish/config.fish to .bashrc.bak   /etc/fstab   /etc/pacman.conf  and  /boot/loader/loader.conf
+
+1:   $cat .bashrc > .bashrc.bak  ###creates bakup file and copies contents of original.
+
+    WITH CACHY MY CONFIG.FISH FILE DOES THIS
+2:  EOS ONLY = $sudo rnano /etc/sudoers  -- Restrict version of nano
+    Defaults editor=/usr/bin/rnano -- place in defaults section
+    CACHY & EOS
+    $sudo visudo  Defaults timestamp_timeout=-1  -- on time password and never again
+    $INFO ONLY = nano .bashrc    alias sudo='sudo -v; sudo '  -- refresh timeout of sudo after use
+>   $sn /efi/loader/loader.conf  change default boot time to 3 sec
+    >   $sudo nano /etc/nanorc
+## uncomment this (include "/usr/share/nano/*.nanorc") way down the list
+
+>   $sudo nano /etc/pacman.conf  ##uncomment and hide these
+# Misc options
+#UseSyslog
+Color
+#ILoveCandy
+# We cannot check disk space from within a chroot environment
+CheckSpace
+VerbosePkgLists
+
+> $sudo nano /etc/paru.conf
+add SkipReview under [options]
+and uncheck hash #BottomUp
+------------------------------------------
+
+###  Perform bashrc alias commands  ###
+>   $pum   to sync repos and $sudo eos-rankmirrors $pur
+
+ARCH UPDATE APP SETUP
+>   $yay arch-update
+>   $sudo pacman -S --needed pacman-contrib archlinux-contrib curl fakeroot htmlq diffutils hicolor-icon-theme python python-pyqt6 qt6-svg glib2
+>   Open "Arch-Update Systray Applet" or $arch-update --tray --enable
+>   systemctl --user enable --now arch-update.timer
+>   CHANGE UPDATE TIMER:  $systemctl --user edit --full arch-update.timer
+
+[...]
+[Timer]
+OnStartupSec=15
+OnUnitActiveSec=7d
+[...]
+Time units are s for seconds, m for minutes, h for hours, d for days...
+
+>   $sudo blkid   ##verify SETUP_KDE fstab file /media/BAKUP partition match installed fstab
+>   $sudo nano /etc/fstab 
+192.168.35.226:/volume1/Volume_3/TV /mnt/DS218 nfs auto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min 0 0
+192.168.35.224:/volume1/Volume_2 /mnt/DS212 nfs auto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min 0 0
+UUID=5fb54ca0-d727-48bf-8e82-48f9d57955e5 /media/BAKUP ext4 defaults,noatime,x-gvfs-show 0 2
+
+>   $pip nfs-utils
+>   $sudo mkdir /mnt/DS223 & DS218
+>   $sudo mkdir /media
+>   $sudo mkdir /media/BAKUP
+>   $sudo chown -v brian /media/BAKUP
+REBOOT..........
+
+
+
+
+Core Apps to install.....
+$pip plasma-{browser-integration,disk,systemmonitor,vault,workspace} yakuake systemdgenie ktorrent krusader doublecmd-qt6 qmmp libreoffice-fresh easytag kodi cmus audacity kdenlive nicotine+ fbreader partitionmanager speedtest-cli digikam showfoto rawtherapee falkon nicotine+ handbrake easytag kompare meld
+
+kate window color scheme = vivid strong cyan dark
+kate editor color = oblivion
+
+AUR Apps to install
+$yay brave-bin cpu-x pacleaner zoom
+
+
+KDE theme settings:
+Global themes = Colorful Dark Global 6 & Vivid Dark Global 6
+
+    vivid-cyan-dark-colorscheme
+    vivid-dark-plasma
+    vivid-dark-aurorae-6
+    Colorful-dark icons
+    Oreo nord cursor
+    No Splash
+    vivid-sddm-6
+
+
+stop services lvm2 bluez etc..
+
